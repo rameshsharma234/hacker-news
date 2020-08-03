@@ -1,0 +1,33 @@
+<table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">Comments</th>
+      <th scope="col">Vote Count</th>
+      <th scope="col">Upvote</th>
+      <th scope="col">News Details</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let news of newsList">
+        <ng-container *ngIf="!news.hide">
+                <td>{{ news.num_comments }}</td>
+                <td>{{ news.votes_count }}</td>
+                <td><button (click)="upvote(news)">Upvote</button></td>
+                <td>
+                    <span>{{ news.title }}</span>
+                    <a href="{{news.url}}" target="_blank"><span>{{news.url_origin}}</span></a>
+                     By<span>{{news.author}}</span>
+                     <span>{{news.m_from_now}}</span>
+                  [<button (click)="hide(news)">hide</button>]</td>
+        </ng-container>
+
+    </tr>
+    </tbody>
+  </table>
+  <div>
+        <ngb-pagination [collectionSize]="70" [(page)]="page" (pageChange)="pageChange($event)" aria-label="Custom pagination">
+                <ng-template ngbPaginationPrevious>Prev</ng-template>
+                <ng-template ngbPaginationNext>Next</ng-template>
+        </ngb-pagination>
+  </div>
+

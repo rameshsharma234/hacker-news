@@ -1,0 +1,10 @@
+<div class="container">
+    <div class="row">
+            <front-page-table [newsList]= "newsList$ | async"
+             [page]="page" (onUpvote)="handleOnUpvote($event)"
+             (onHide)="handleOnHide($event)"></front-page-table>
+    </div>
+    <div class="row">
+
+    </div>
+</div>
