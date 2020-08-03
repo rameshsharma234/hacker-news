@@ -12,7 +12,6 @@
     "serve:ssr": "node dist/hacker-news/server/main.js",
     "build:ssr": "ng build --prod && ng run hacker-news:server:production",
     "prerender": "ng run hacker-news:prerender",
-    "start:heroku":"node dist/hacker-news/server",
     "postinstall":"npm run build:ssr"
   },
   "private": true,
