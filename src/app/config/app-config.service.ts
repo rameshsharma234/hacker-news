@@ -5,5 +5,5 @@ import { Injectable } from '@angular/core';
 })
 export class AppConfigService {
 
-  baseUrl = 'http://hn.algolia.com/api/';
+  baseUrl = 'https://hn.algolia.com/api/';
 }
