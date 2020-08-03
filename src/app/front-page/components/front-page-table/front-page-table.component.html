@@ -1,6 +1,6 @@
 <table class="table table-striped">
     <thead>
-    <tr>
+    <tr class="bc-primary c-primary-contrast fs-ml fw-b">
       <th scope="col">Comments</th>
       <th scope="col">Vote Count</th>
       <th scope="col">Upvote</th>
@@ -10,22 +10,25 @@
     <tbody>
     <tr *ngFor="let news of newsList">
         <ng-container *ngIf="!news.hide">
-                <td>{{ news.num_comments }}</td>
-                <td>{{ news.votes_count }}</td>
-                <td><button (click)="upvote(news)">Upvote</button></td>
+                <td class="c-dark fs-m text-center fw-b">{{ news.num_comments }}</td>
+                <td class="fs-m c-dark text-center fw-b">{{ news.votes_count }}</td>
+                <td><div (click)="upvote(news)" class="img-icon c-grey"><img src="{{faCaretDownUrl}}" ></div></td>
                 <td>
-                    <span>{{ news.title }}</span>
-                    <a href="{{news.url}}" target="_blank"><span>{{news.url_origin}}</span></a>
-                     By<span>{{news.author}}</span>
-                     <span>{{news.m_from_now}}</span>
-                  [<button (click)="hide(news)">hide</button>]</td>
+
+                        <a href="{{news.url}}" target="_blank"> <span class="fs-ml c-dark mr-8">{{ news.title }}</span></a>
+                           <a href="{{news.url}}" target="_blank" class="fs-s mr-8"><span class="c-grey">({{news.url_origin}}) By</span></a>
+                             <span class="fs-s c-dark mr-8">{{news.author}}</span>
+                             <span class="fs-s c-grey mr-8">{{news.m_from_now}}</span>
+                          <button  class="fs-m" (click)="hide(news)">[hide]</button>
+
+                    </td>
         </ng-container>
 
     </tr>
     </tbody>
   </table>
-  <div>
-        <ngb-pagination [collectionSize]="70" [(page)]="page" (pageChange)="pageChange($event)" aria-label="Custom pagination">
+  <div class="row">
+        <ngb-pagination class="pull-right" [collectionSize]="70" [(page)]="page" (pageChange)="pageChange($event)" aria-label="Custom pagination">
                 <ng-template ngbPaginationPrevious>Prev</ng-template>
                 <ng-template ngbPaginationNext>Next</ng-template>
         </ngb-pagination>

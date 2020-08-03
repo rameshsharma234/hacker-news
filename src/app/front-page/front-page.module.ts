@@ -7,6 +7,7 @@ import { FrontPageService } from './services/front-page.service';
 import { FrontPageTableComponent } from './components/front-page-table/front-page-table.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -20,7 +21,8 @@ import { HighchartsChartModule } from 'highcharts-angular';
     CommonModule,
     FrontPageRoutingModule,
     NgbModule,
-    HighchartsChartModule
+    HighchartsChartModule,
+    SharedModule
   ],
   providers: [
     FrontPageService

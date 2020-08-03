@@ -1,0 +1,14 @@
+td,th {
+    padding: .5rem;
+
+}
+.img-icon {
+    width:15px;
+    height: 15px;
+    line-height: 15px;
+    cursor: pointer;
+    padding: 5px;
+    :hover {
+        background: rgb(226, 225, 225);
+    }
+}

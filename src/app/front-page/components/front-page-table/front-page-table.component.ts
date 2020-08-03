@@ -12,7 +12,7 @@ export class FrontPageTableComponent implements OnInit {
  @Input() page;
  @Output() onUpvote = new EventEmitter();
  @Output() onHide = new EventEmitter();
-
+ faCaretDownUrl = 'assets/caret.png';
   constructor(
     private _route: ActivatedRoute,
     private _router: Router

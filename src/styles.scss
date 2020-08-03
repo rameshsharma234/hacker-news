@@ -2,3 +2,54 @@
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+
+$primary-color: rgb(255, 102, 0);
+$primary-color-contrast: #fff;
+$app-color:rgb(246, 246, 239);
+$grey: #828282;
+$dark: #333;
+
+.c-grey {
+    color: $grey;
+}
+.c-dark {
+    color: $dark;
+}
+.bc-primary {
+    background: $primary-color;
+}
+.bc-app-color {
+    background: $app-color;
+}
+.c-primary-contrast {
+  color: $primary-color-contrast;
+}
+
+.fs-xs {
+    font-size: 10px !important;
+}
+.fs-s {
+    font-size: 12px !important;
+}
+.fs-m {
+    font-size: 14px !important;
+}
+.fs-ml {
+    font-size: 16px !important;
+}
+.fw-b {
+    font-weight: bold;
+}
+
+.mr-8 {
+    margin-right: 8px;
+}
+
+.separator {
+    border: 1px solid $primary-color;
+    background-color: $primary-color;
+}
+.text-center {
+    text-align: center;
+}
+

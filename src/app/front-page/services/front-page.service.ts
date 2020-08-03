@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { ApiService } from 'src/app/core/services/api.service';
 import { map, tap, filter } from 'rxjs/operators';
 import * as _ from 'lodash';
+import * as moment from 'moment';
 
 
 
@@ -19,6 +20,7 @@ interface State {
 export class FrontPageService {
     private _loading$ = new BehaviorSubject<boolean>(true);
     private _newsList$ = new BehaviorSubject<any[]>([]);
+    private _chartData$ = new BehaviorSubject<any[]>([]);
     private _total$ = new BehaviorSubject<number>(0);
 
     private _state: State = {
@@ -28,12 +30,20 @@ export class FrontPageService {
 
     constructor(private _apiService: ApiService) {
 
-
+        try {
+            let space = JSON.parse(localStorage.getItem('front_page_table'))
+            if (!space) {
+                space = localStorage.setItem('front_page_table', JSON.stringify({}));
+            }
+        } catch (e) {
+            localStorage.setItem('front_page_table', JSON.stringify({}));
+        };
     }
 
     get newsList$() { return this._newsList$.asObservable(); }
     get total$() { return this._total$.asObservable(); }
     get loading$() { return this._loading$.asObservable(); }
+    get chartData$() { return this._chartData$.asObservable(); }
     get page() { return this._state.page; }
     get pageSize() { return this._state.pageSize; }
 
@@ -57,7 +67,8 @@ export class FrontPageService {
                         ...p,
                         hide: this.getValueFromlocalStorage(p.created_at_i, 'hide'),
                         votes_count: this.getValueFromlocalStorage(p.created_at_i, 'votes_count'),
-                        url_origin: this.getUrlOrgin(p.url)
+                        url_origin: this.getUrlOrgin(p.url),
+                        m_from_now: moment(p.created_at).utc().fromNow()
                     }
                 })
                 return transformed;
@@ -74,6 +85,7 @@ export class FrontPageService {
                 return transformed;
             }),
             tap((chartData) => console.log("chartData", chartData)),
+            tap((chartData) => this._chartData$.next(chartData))
         ).subscribe();
     }
 
@@ -120,8 +132,18 @@ export class FrontPageService {
             space[key][property] = value
             localStorage.setItem('front_page_table', JSON.stringify(space));
         }
+        this.updateChartData();
     }
 
+    updateChartData() {
+        this.newsList$.pipe(
+            map((newsList) => {
+                let transformed = newsList.map((data) => [data.created_at_i, data.votes_count]);
+                return transformed;
+            }),
+            tap((transformed) => this._chartData$.next(transformed))
+        ).subscribe();
+    }
 
     getUrlOrgin(url) {
         if (!url) {

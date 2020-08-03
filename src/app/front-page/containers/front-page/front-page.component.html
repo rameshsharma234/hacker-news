@@ -1,10 +1,16 @@
-<div class="container">
+<div class="container bc-app-color">
     <div class="row">
-            <front-page-table [newsList]= "newsList$ | async"
-             [page]="page" (onUpvote)="handleOnUpvote($event)"
-             (onHide)="handleOnHide($event)"></front-page-table>
+        <front-page-table [newsList]="newsList$ | async" [page]="page" (onUpvote)="handleOnUpvote($event)"
+            (onHide)="handleOnHide($event)"></front-page-table>
     </div>
-    <div class="row">
 
+    <hr class="separator" />
+
+    <div class="row">
+        <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions"
+            style="width: 100%; height: 400px; display: block;"></highcharts-chart>
     </div>
+
+    <hr class="separator " />
+
 </div>

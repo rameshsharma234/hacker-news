@@ -39,7 +39,10 @@ export class FrontPageComponent implements OnInit {
           series: [{
             data: this.chartData,
             type: 'line'
-          }]
+          }],
+          chart: {
+            backgroundColor:  'rgb(246, 246, 239)'
+          }
         }
       }
     })
