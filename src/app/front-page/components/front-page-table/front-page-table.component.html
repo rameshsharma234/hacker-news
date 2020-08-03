@@ -19,7 +19,7 @@
                            <a href="{{news.url}}" target="_blank" class="fs-s mr-8"><span class="c-grey">({{news.url_origin}}) By</span></a>
                              <span class="fs-s c-dark mr-8">{{news.author}}</span>
                              <span class="fs-s c-grey mr-8">{{news.m_from_now}}</span>
-                          <button  class="fs-m" (click)="hide(news)">[hide]</button>
+                          <button  class="fs-m hide-btn" (click)="hide(news)">[hide]</button>
 
                     </td>
         </ng-container>
@@ -28,9 +28,11 @@
     </tbody>
   </table>
   <div class="row">
-        <ngb-pagination class="pull-right" [collectionSize]="70" [(page)]="page" (pageChange)="pageChange($event)" aria-label="Custom pagination">
-                <ng-template ngbPaginationPrevious>Prev</ng-template>
-                <ng-template ngbPaginationNext>Next</ng-template>
-        </ngb-pagination>
+
+    <div class="col-12 justify-content-end d-flex"> <ngb-pagination class="pull-right" [collectionSize]="70" [(page)]="page" (pageChange)="pageChange($event)" aria-label="Custom pagination">
+        <ng-template ngbPaginationPrevious>Prev</ng-template>
+        <ng-template ngbPaginationNext>Next</ng-template>
+</ngb-pagination></div>
+
   </div>
 
