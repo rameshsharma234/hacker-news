@@ -1,4 +1,5 @@
-<table class="table table-striped">
+<div class="table-responsive">
+<table class="table table-striped table-sm">
     <thead>
     <tr class="bc-primary c-primary-contrast fs-ml fw-b">
       <th scope="col">Comments</th>
@@ -15,8 +16,8 @@
                 <td><div (click)="upvote(news)" class="img-icon c-grey"><img src="{{faCaretDownUrl}}" ></div></td>
                 <td>
 
-                        <a href="{{news.url}}" target="_blank"> <span class="fs-ml c-dark mr-8">{{ news.title }}</span></a>
-                           <a href="{{news.url}}" target="_blank" class="fs-s mr-8"><span class="c-grey">({{news.url_origin}}) By</span></a>
+                        <a href="{{news.url}}" target="_blank" rel="noreferrer"> <span class="fs-ml c-dark mr-8">{{ news.title }}</span></a>
+                           <a href="{{news.url}}" target="_blank" rel="noreferrer" class="fs-s mr-8" ><span class="c-grey">({{news.url_origin}}) By</span></a>
                              <span class="fs-s c-dark mr-8">{{news.author}}</span>
                              <span class="fs-s c-grey mr-8">{{news.m_from_now}}</span>
                           <button  class="fs-m hide-btn" (click)="hide(news)">[hide]</button>
@@ -27,6 +28,7 @@
     </tr>
     </tbody>
   </table>
+</div>
   <div class="row">
 
     <div class="col-12 justify-content-end d-flex"> <ngb-pagination class="pull-right" [collectionSize]="70" [(page)]="page" (pageChange)="pageChange($event)" aria-label="Custom pagination">
