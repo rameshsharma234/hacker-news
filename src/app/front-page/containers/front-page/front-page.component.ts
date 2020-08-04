@@ -37,8 +37,11 @@ export class FrontPageComponent implements OnInit {
         this.chartData = data;
         this.chartOptions = {
           series: [{
-            data: this.chartData,
+            data: data.data,
             type: 'line'
+          }],
+          xAxis: [{
+            categories: data.categories
           }],
           chart: {
             backgroundColor:  'rgb(246, 246, 239)'

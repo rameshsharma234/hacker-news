@@ -20,7 +20,7 @@ interface State {
 export class FrontPageService {
     private _loading$ = new BehaviorSubject<boolean>(true);
     private _newsList$ = new BehaviorSubject<any[]>([]);
-    private _chartData$ = new BehaviorSubject<any[]>([]);
+    private _chartData$ = new BehaviorSubject<any>({});
     private _total$ = new BehaviorSubject<number>(0);
 
     private _state: State = {
@@ -79,10 +79,15 @@ export class FrontPageService {
             }),
             tap((payload) => this._newsList$.next(payload)),
             map((payload) => {
-                let transformed = payload.map((p) => {
-                    return [p.created_at_i, p.votes_count]
+                let obj = {
+                    data: [],
+                    categories: []
+                }
+               payload.forEach((p) => {
+                   obj.data.push(p.votes_count);
+                   obj.categories.push(p.created_at_i);
                 });
-                return transformed;
+                return obj;
             }),
             tap((chartData) => console.log("chartData", chartData)),
             tap((chartData) => this._chartData$.next(chartData))
@@ -138,8 +143,17 @@ export class FrontPageService {
     updateChartData() {
         this.newsList$.pipe(
             map((newsList) => {
-                let transformed = newsList.map((data) => [data.created_at_i, data.votes_count]);
-                return transformed;
+                let obj = {
+                    data: [],
+                    categories: []
+                }
+                newsList.forEach((p) => {
+                   obj.data.push(p.votes_count);
+                   obj.categories.push(p.created_at_i);
+                });
+                return obj;
+                // let transformed = newsList.map((data) => [data.created_at_i, data.votes_count]);
+                // return transformed;
             }),
             tap((transformed) => this._chartData$.next(transformed))
         ).subscribe();
