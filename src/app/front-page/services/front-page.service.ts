@@ -65,8 +65,8 @@ export class FrontPageService {
                 let transformed = payload.map((p) => {
                     return {
                         ...p,
-                        hide: this.getValueFromlocalStorage(p.created_at_i, 'hide'),
-                        votes_count: this.getValueFromlocalStorage(p.created_at_i, 'votes_count'),
+                        hide: this.getValueFromlocalStorage(p.created_at_i, 'hide') ,
+                        votes_count: this.getValueFromlocalStorage(p.created_at_i, 'votes_count') || p.points,
                         url_origin: this.getUrlOrgin(p.url),
                         m_from_now: moment(p.created_at).utc().fromNow()
                     }
